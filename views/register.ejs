@@ -1,0 +1,80 @@
+<!-- Reviewer - Leave all my comments in file until I am finished - I need them to be in the file for reference as I work on the project. I will remove them when I am done. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Character encoding -->
+  <meta charset="UTF-8">
+
+  <!-- Responsive layout -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Page title -->
+  <title>Register - StudySphere</title>
+</head>
+
+<body>
+
+  <!-- Page heading -->
+  <h2>Register</h2>
+
+  <!-- Registration form -->
+  <!-- Sends data to POST /register route -->
+  <form method="POST" action="/register">
+
+    <!-- First Name input -->
+    <!-- name must match req.body.firstName -->
+    <input 
+      type="text" 
+      name="firstName" 
+      placeholder="First Name" 
+      required
+    >
+
+    <br><br>
+
+    <!-- Last Name input -->
+    <input 
+      type="text" 
+      name="lastName" 
+      placeholder="Last Name" 
+      required
+    >
+
+    <br><br>
+
+    <!-- Email input -->
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Email Address" 
+      required
+    >
+
+    <br><br>
+
+    <!-- Password input -->
+    <!-- This will be hashed in the controller -->
+    <input 
+      type="password" 
+      name="password" 
+      placeholder="Password" 
+      required
+    >
+
+    <br><br>
+
+    <!-- Submit button -->
+    <button type="submit">Register</button>
+
+  </form>
+
+  <br>
+
+  <!-- Link back to login page -->
+  <a href="/login">Already have an account? Login</a>
+
+</body>
+
+</html>

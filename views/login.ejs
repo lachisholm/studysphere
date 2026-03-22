@@ -1,0 +1,61 @@
+<!-- Reviewer - Leave all my comments in file until I am finished - I need them to be in the file for reference as I work on the project. I will remove them when I am done. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Character encoding -->
+  <meta charset="UTF-8">
+
+  <!-- Responsive layout -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Page title -->
+  <title>Login - StudySphere</title>
+</head>
+
+<body>
+
+  <!-- Page heading -->
+  <h2>Login</h2>
+
+  <!-- Login form -->
+  <!-- method="POST" sends data securely to server -->
+  <!-- action="/login" matches your route in authRoutes.js -->
+  <form method="POST" action="/login">
+
+    <!-- Email input field -->
+    <!-- name MUST match req.body.email in controller -->
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Enter your email" 
+      required
+    >
+
+    <br><br>
+
+    <!-- Password input field -->
+    <!-- type="password" hides characters -->
+    <input 
+      type="password" 
+      name="password" 
+      placeholder="Enter your password" 
+      required
+    >
+
+    <br><br>
+
+    <!-- Submit button -->
+    <button type="submit">Login</button>
+
+  </form>
+
+  <br>
+
+  <!-- Link back to home page -->
+  <a href="/">Back to Home</a>
+
+</body>
+
+</html>
