@@ -26,6 +26,10 @@ export const register = async (req, res) => {
 
   } catch (error) {
     console.error(error);
+    // Check for duplicate email error (Postgres error code 23505)
+    if (error.code === '23505') {
+      return res.status(400).send("Email is already registered. Please use a different email or log in.");
+    }
     res.status(500).send("Error registering user");
   }
 };
@@ -55,8 +59,8 @@ export const login = async (req, res) => {
     // Store user in session
     req.session.user = user;
 
-    // Redirect to dashboard
-    res.redirect("/dashboard");
+    // Redirect to sessions page for correct dashboard refresh
+    res.redirect("/sessions");
 
   } catch (error) {
     console.error(error);
