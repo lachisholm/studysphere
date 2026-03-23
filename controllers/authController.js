@@ -16,21 +16,16 @@ export const register = async (req, res) => {
 
   try {
     // Hash the user's password with bcrypt for security
-    // The number 10 represents the salt rounds (complexity)
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Call the model function to create a new user in the database
+    // Create the user in the database
     await createUser(firstName, lastName, email, hashedPassword);
 
-    // Redirect user to login page after successful registration
+    // Redirect to login page
     res.redirect("/login");
 
   } catch (error) {
-
-    // Log error to console for debugging
     console.error(error);
-
-    // Send error response to user
     res.status(500).send("Error registering user");
   }
 };
@@ -40,38 +35,31 @@ export const register = async (req, res) => {
 // Export a function to handle user login
 export const login = async (req, res) => {
 
-  // Extract login credentials from request body
   const { email, password } = req.body;
 
   try {
-    // Find user in database by email
+    // Find user by email
     const user = await findUserByEmail(email);
 
-    // If no user is found, return error message
     if (!user) {
       return res.status(404).send("User not found");
     }
 
-    // Compare entered password with stored hashed password
+    // Compare password with hashed password
     const isMatch = await bcrypt.compare(password, user.password);
 
-    // If passwords do not match, return error
     if (!isMatch) {
       return res.status(401).send("Invalid credentials");
     }
 
-    // Store user information in session to keep them logged in
+    // Store user in session
     req.session.user = user;
 
-    // Redirect to dashboard after successful login
+    // Redirect to dashboard
     res.redirect("/dashboard");
 
   } catch (error) {
-
-    // Log error for debugging
     console.error(error);
-
-    // Return server error
     res.status(500).send("Error logging in");
   }
 };
@@ -81,16 +69,15 @@ export const login = async (req, res) => {
 // Export a function to render dashboard page
 export const dashboard = (req, res) => {
 
-  // Check if user is logged in (session exists)
+  // Redirect if not logged in
   if (!req.session.user) {
-
-    // If not logged in, redirect to login page
     return res.redirect("/login");
   }
 
-  // Render dashboard view and pass user data
+  // Render dashboard with user + empty sessions
   res.render("dashboard", {
-    user: req.session.user
+    user: req.session.user,
+    sessions: []
   });
 };
 
@@ -99,10 +86,8 @@ export const dashboard = (req, res) => {
 // Export a function to log the user out
 export const logout = (req, res) => {
 
-  // Destroy the session to log the user out
+  // Destroy session
   req.session.destroy(() => {
-
-    // Redirect user to home page after logout
     res.redirect("/");
   });
 };

@@ -9,9 +9,6 @@ import session from "express-session";
 // Import dotenv to load environment variables from a .env file
 import dotenv from "dotenv";
 
-// Import path module (used for working with file paths if needed later)
-import path from "path";
-
 // Import route files that handle authentication-related routes
 import authRoutes from "./routes/authRoutes.js";
 
@@ -41,7 +38,7 @@ app.use(express.json());
 // Configure session management
 app.use(
   session({
-    // Secret key used to sign the session ID cookie (should be hidden in production)
+    // Secret key used to sign the session ID cookie
     secret: "secretkey",
 
     // Prevents session from being saved if it hasn’t been modified
@@ -58,6 +55,14 @@ app.use(express.static("public"));
 // Set EJS as the templating engine for rendering views
 app.set("view engine", "ejs");
 
+// ---------------- HOME ROUTE ----------------
+
+// Define the root route (homepage)
+// This MUST come before other routes so it is not overridden
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
 // ---------------- ROUTES SECTION ----------------
 
 // Use authentication routes (register, login, dashboard)
@@ -65,14 +70,6 @@ app.use("/", authRoutes);
 
 // Use session routes (study session CRUD operations)
 app.use("/sessions", sessionRoutes);
-
-// ---------------- HOME ROUTE ----------------
-
-// Define the root route (homepage)
-app.get("/", (req, res) => {
-  // Render the index.ejs file inside the views folder
-  res.render("index");
-});
 
 // ---------------- ERROR HANDLING ----------------
 
@@ -83,6 +80,5 @@ app.use(errorHandler);
 
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
-  // Log message to confirm the server is running
   console.log(`Server running on port ${PORT}`);
 });

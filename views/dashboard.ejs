@@ -1,0 +1,119 @@
+<!-- Reviewer - Leave all my comments in file until I am finished - I need them to be in the file for reference as I work on the project. I will remove them when I am done. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Set character encoding for proper text display -->
+  <meta charset="UTF-8">
+
+  <!-- Ensure the page scales correctly on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Title displayed in the browser tab -->
+  <title>Dashboard - StudySphere</title>
+</head>
+
+<body>
+
+  <!-- Main heading for the dashboard -->
+  <h1>StudySphere Dashboard</h1>
+
+  <!-- Display the logged-in user's first name using EJS -->
+  <p>Welcome, <%= user.firstName %>!</p>
+
+  <!-- Link to log out the user -->
+  <a href="/logout">Logout</a>
+
+  <!-- Horizontal line for visual separation -->
+  <hr>
+
+  <!-- ================= ADD SESSION FORM ================= -->
+
+  <!-- Section heading -->
+  <h2>Add Study Session</h2>
+
+  <!-- Form to create a new study session -->
+  <!-- method="POST" sends data securely -->
+  <!-- action="/sessions/add" connects to sessionRoutes -->
+  <form method="POST" action="/sessions/add">
+
+    <!-- Input for subject name -->
+    <input 
+      type="text" 
+      name="subject" 
+      placeholder="Subject" 
+      required
+    >
+
+    <br><br>
+
+    <!-- Input for session duration in minutes -->
+    <input 
+      type="number" 
+      name="duration" 
+      placeholder="Duration (minutes)" 
+      required
+    >
+
+    <br><br>
+
+    <!-- Optional notes input -->
+    <input 
+      type="text" 
+      name="notes" 
+      placeholder="Notes"
+    >
+
+    <br><br>
+
+    <!-- Submit button -->
+    <button type="submit">Add Session</button>
+
+  </form>
+
+  <!-- Divider -->
+  <hr>
+
+  <!-- ================= DISPLAY SESSIONS ================= -->
+
+  <!-- Section heading -->
+  <h2>Your Study Sessions</h2>
+
+  <!-- EJS conditional: check if sessions exist -->
+  <% if (sessions && sessions.length > 0) { %>
+
+    <!-- Loop through each session -->
+    <% sessions.forEach(session => { %>
+
+      <!-- Container for each session -->
+      <div>
+
+        <!-- Display subject -->
+        <strong>Subject:</strong> <%= session.subject %><br>
+
+        <!-- Display duration -->
+        <strong>Duration:</strong> <%= session.duration %> minutes<br>
+
+        <!-- Display notes -->
+        <strong>Notes:</strong> <%= session.notes %><br>
+
+        <!-- Delete link using dynamic route parameter -->
+        <a href="/sessions/delete/<%= session.id %>">Delete</a>
+
+        <br><br>
+
+      </div>
+
+    <% }) %>
+
+  <% } else { %>
+
+    <!-- Message shown if no sessions exist -->
+    <p>No study sessions yet.</p>
+
+  <% } %>
+
+</body>
+
+</html>
