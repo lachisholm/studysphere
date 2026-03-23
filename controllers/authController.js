@@ -13,13 +13,15 @@ export const register = async (req, res) => {
 
   // Extract form data from the request body
   const { firstName, lastName, email, password } = req.body;
+  console.log('Register attempt:', { firstName, lastName, email, password });
 
   try {
     // Hash the user's password with bcrypt for security
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the user in the database
-    await createUser(firstName, lastName, email, hashedPassword);
+    const newUser = await createUser(firstName, lastName, email, hashedPassword);
+    console.log('User created:', newUser);
 
     // Redirect to login page
     res.redirect("/login");
@@ -40,10 +42,12 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
 
   const { email, password } = req.body;
+  console.log('Login attempt:', { email, password });
 
   try {
     // Find user by email
     const user = await findUserByEmail(email);
+    console.log('User found for login:', user);
 
     if (!user) {
       return res.status(404).send("User not found");
