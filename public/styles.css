@@ -54,15 +54,37 @@ h2 {
   margin-bottom: 10px;
 }
 
-
 /* =======================*/
-/*   CARDS / SECTIONS     */
+/*   HOME PAGE CENTERING  */
 /*======================= */
 
-section {
+.container {
+  text-align: center;
+}
+
+
+/* =======================*/
+/*   CARD BLOCKS          */
+/*======================= */
+
+form,
+.container > div {
   background-color: #ffffff;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* =======================*/
+/*   SESSION CARD         */
+/*======================= */
+
+.session-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  line-height: 1.6;
 }
