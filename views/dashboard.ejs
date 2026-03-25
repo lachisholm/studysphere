@@ -16,11 +16,13 @@
 
 <body>
 
+    <div style="max-width: 900px; margin: 40px auto; font-family: Arial, sans-serif;">
+
   <!-- Main heading for the dashboard -->
-  <h1>StudySphere Dashboard</h1>
+  <h1 style="text-align: center; margin-bottom: 30px;">StudySphere Dashboard</h1>
 
   <!-- Display the logged-in user's first name using EJS -->
-  <p>Welcome, <%= user.first_name %>!</p>
+  <p>Welcome, <%= user.firstName %>!</p>
 
   <!-- Link to log out the user -->
   <a href="/logout">Logout</a>
