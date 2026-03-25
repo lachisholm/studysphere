@@ -37,3 +37,18 @@ body {
     margin: 40px auto;
     padding: 20px;
 }
+
+
+/* =======================
+   HEADINGS
+======================= */
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
