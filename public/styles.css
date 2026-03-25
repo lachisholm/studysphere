@@ -88,3 +88,31 @@ form,
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   line-height: 1.6;
 }
+
+
+/* =======================
+   BUTTONS
+======================= */
+
+button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--secondary);
+}
+
+
+/* =======================
+   FORM CONTAINER
+======================= */
+
+.form-container {
+  max-width: 400px;
+  margin: 80px auto;
+  text-align: center;
+}
